@@ -4031,8 +4031,7 @@ $$;
       const hugs = state.hugs.filter(item => !item.recalled_at).slice(-4).reverse();
       const hugBox = $("#hugHistory");
       if (hugBox) {
-        hugBox.innerHTML = hugs.map(item => `<div class="care-item">🫂 <b>${escapeHtml(profileName(item.sender_id))}</b> · <span class="meta">${escapeHtml(formatDateTime(item.created_at))}</span>${item.sender_id === state.me?.user_id ? ` <button class="recall-btn" data-recall-hug="${item.id}">${escapeHtml(t("remove"))}</button>` : ""}</div>`).join("");
-      }
+hugBox.innerHTML = hugs.map(item => `<div class="care-item">🫂 <b>${escapeHtml(personFor(item.sender_id)?.display_name || "—")}</b> · <span class="meta">${escapeHtml(formatDateTime(item.created_at))}</span>${item.sender_id === state.me?.user_id ? ` <button class="recall-btn" data-recall-hug="${item.id}">${escapeHtml(t("remove"))}</button>` : ""}</div>`).join("");      }
 
       const day = todayKey();
       const todays = state.gratitudes.filter(item => item.day === day && !item.recalled_at);
